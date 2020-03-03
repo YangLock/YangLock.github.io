@@ -204,9 +204,9 @@
 <h3 id="Github仓库设置"><a href="#Github仓库设置" class="headerlink" title="Github仓库设置"></a>Github仓库设置</h3><ul>
 <li>在Github上新建一个仓库，然后将仓库取名为<strong>username.github.io</strong>，其中username就是你的Github账户名，并且只能是你的账户名。<br><img src="/img/myGithub.png" srcset="/img/loading.gif" alt="image1"></li>
 <li>然后利用编辑器打开<strong>MyBlog</strong>文件夹下的<em>_config.yml</em>文件，然后将文档最后的<em>deploy</em>修改为以下内容<pre><code class="yml">deploy:
-type: git
-repository: https://github.com/username/username.github.io
-branch: master</code></pre>
+  type: git
+  repository: https://github.com/username/username.github.io
+  branch: master</code></pre>
  将其中的<em>username</em>替换为自己的Github账户名即可。严格注意大小写。</li>
 <li>依次执行以下命令，生成静态文件并将其上传至Github</li>
 </ul>
@@ -219,7 +219,7 @@ branch: master</code></pre>
 </ul>
 <h3 id="博客配置"><a href="#博客配置" class="headerlink" title="博客配置"></a>博客配置</h3><ul>
 <li>我下载的主题是<strong>Fluid</strong>，这里以其为例。<strong>必要的设置</strong>如下所示：<pre><code class="yml">highlight:
-enable: false  # 关闭默认的代码高亮
+  enable: false  # 关闭默认的代码高亮
 theme: fluid  # 指定主题
 language: zh-CN  # 指定语言，可不改</code></pre>
 </li>
