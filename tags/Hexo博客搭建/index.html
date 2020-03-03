@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>Victor&#39;s Blog</title>
+  <title>标签 - Hexo博客搭建~Victor&#39;s Blog</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -39,7 +39,7 @@
 
 
 <body>
-  <header style="height: 100vh;">
+  <header style="height: 80vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -120,10 +120,6 @@
           </div>
 
           
-            <div class="scroll-down-bar">
-              <i class="fas fa-angle-down scroll-down-arrow"></i>
-            </div>
-          
         </div>
       </div>
     </div>
@@ -139,138 +135,20 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
-
-  <div class="row mx-auto index-card">
+<div class="list-group">
+<!--  <p class="h4">共计 1 篇文章</p>-->
+  <hr>
+  
     
+      
+      <p class="h5">2020</p>
     
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2020/03/03/MacOS+Hexo+Github%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" target="_self">
-          <img src="/img/Hexo.png" srcset="/img/loading.gif" alt="MacOS + Hexo + Github个人博客搭建" class="index-img img-fluid rounded index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/03/03/MacOS+Hexo+Github%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
-        <p class="h4 index-header">MacOS + Hexo + Github个人博客搭建</p>
-      </a>
-
-      <a href="/2020/03/03/MacOS+Hexo+Github%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">MacOS + Hexo + Github个人博客搭建
-本篇博客主要用于记录搭建的全部过程，以及其中踩的一些坑
-
-准备工作搭建博客之前要先安装Node.js和Git，可按照一下方式进行安装。
-安装Node.js和Git
-利用Homebrew进行安装，没有Homebrew的自行到官网，按照指定命令安装。
-输入brew install node开始安装Node.js
-输入brew install git开始安装Git
-
-检查是否安装成功
-输入node -v和Git --version如果显示相关版本信息，则安装成功
-
-安装Hexo准备工作做好后，开始安装Hexo。sudo npm install -g hexo⚠️ 一定要注意的就是，这里一定进行sudo操作，不然无法安装
-本地初始化博客
-首先，在一个你要创建博客的目录下新建一个文件夹。这里我的文件夹叫MyBlog，然后进入MyBlog
-
-cd MyBlog    
-
-输入一下命令，以进行初始化本地的博客文件。
-
-hexo init
-
-然后安装所需要的环境依赖
-
-sudo npm install
-
-之后依次执行一下两个命令，便可以在本地查看</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-03&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/Hexo">Hexo</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA">Hexo博客搭建</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2020/03/03/opencv+opencl+openmp/" target="_self">
-          <img src="/img/opencv.png" srcset="/img/loading.gif" alt="XCode关于OpenCV + OpenCL + OpenMP的配置" class="index-img img-fluid rounded index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/03/03/opencv+opencl+openmp/">
-        <p class="h4 index-header">XCode关于OpenCV + OpenCL + OpenMP的配置</p>
-      </a>
-
-      <a href="/2020/03/03/opencv+opencl+openmp/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">配置项目
-OpenCL是CUDA的替代品，能够利用GPU执行OpenCV的图形的大量计算；而OpenMP时开放多核编程语言，本质上还是利用CPU
-
-OpenCV
-利用Homebrew安装opencv（C++）
-
-brew install opencv
-
-安装的过程中，brew就已经自动执行cmake将opencv包编译好了，所以所有的动态库文件都在/usr/local/Cellar/opencv/4.2.0_1/lib路径下
-
-创建一个XCode项目，选择command line，然后将Search Paths下的两个头文件和库文件搜索路径填好
-
-Header Search Paths = &#39;/usr/local/include/opencv4&#39;
-Library Search Paths = &#39;/usr/local/Cellar/opencv/4.2.0_1/lib&#39;
-
-
-之后就要将动态库文件全部链接进项目中，找到Build Phases，然后将opencv文件夹里的lib中的所有动态库文件添加进去即可。⚠️ 在链接库文件时，一定要将原本的lib文件夹c</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-03&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/OpenCV">OpenCV</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/OpenCV%E9%A1%B9%E7%9B%AE%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE">OpenCV项目相关配置</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-
+    <a href="/2020/03/03/MacOS+Hexo+Github%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">MacOS + Hexo + Github个人博客搭建</span>
+      <span style="float: right;">03-03</span>
+    </a>
+  
+</div>
 
 
 
@@ -397,7 +275,7 @@ Library Search Paths = &#39;/usr/local/Cellar/opencv/4.2.0_1/lib&#39;
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "All roads lead to Rome&nbsp;",
+        "标签 - Hexo博客搭建&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
