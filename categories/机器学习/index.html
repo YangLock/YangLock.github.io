@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>Tensorflow1.4.1升级到2.1.0~Victor&#39;s Blog</title>
+  <title>分类 - 机器学习~Victor&#39;s Blog</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -39,7 +39,7 @@
 
 
 <body>
-  <header style="height: 70vh;">
+  <header style="height: 80vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -106,7 +106,7 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background" false
+    <div class="view intro-2" id="background" parallax=true
          style="background: url('/img/banner.jpeg')no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
@@ -116,41 +116,6 @@
               
             </span>
 
-            
-              <br>
-              
-                <p class="mt-3">
-                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  星期六, 四月 11日 2020, 12:09 凌晨
-                </p>
-              
-
-              <p>
-                
-                  
-                  &nbsp;<i class="far fa-chart-bar"></i>
-                  <span class="post-count">
-                    352 字
-                  </span>&nbsp;
-                
-
-                
-                  
-                  &nbsp;<i class="far fa-clock"></i>
-                  <span class="post-count">
-                      1 分钟
-                  </span>&nbsp;
-                
-
-                
-                  <!-- 不蒜子统计文章PV -->
-                  
-                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
-                  <span id="busuanzi_container_page_pv">
-                    <span id="busuanzi_value_page_pv"></span> 次
-                  </span>&nbsp;
-                
-              </p>
             
           </div>
 
@@ -162,91 +127,36 @@
 
   <main>
     
+      <div class="container nopadding-md">
+        <div class="py-5 z-depth-3" id="board">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<div class="list-group">
+<!--  <p class="h4">共计 1 篇文章</p>-->
+  <hr>
+  
+    
       
+      <p class="h5">2020</p>
+    
+    <a href="/2020/04/10/Tensorflow1.4.1%E5%8D%87%E7%BA%A7%E5%88%B02.1.0/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">Tensorflow升级到2.1.0</span>
+      <span style="float: right;">04-10</span>
+    </a>
+  
+</div>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="py-5 z-depth-3" id="board">
-        <div class="post-content mx-auto" id="post">
-          <div class="markdown-body">
-            <h2 id="Tensorflow1-4-1升级到2-1-0"><a href="#Tensorflow1-4-1升级到2-1-0" class="headerlink" title="Tensorflow1.4.1升级到2.1.0"></a>Tensorflow1.4.1升级到2.1.0</h2><blockquote>
-<p>Tensorflow 2.1.0优化了计算图，大大简化了使用流程，使得语法更贴近python的原生语法格式</p>
-</blockquote>
-<h3 id="卸载原有的tensorflow1-4-1版本"><a href="#卸载原有的tensorflow1-4-1版本" class="headerlink" title="卸载原有的tensorflow1.4.1版本"></a>卸载原有的tensorflow1.4.1版本</h3><p>至于为何要卸载而不是直接执行<code>sudo pip install --upgrada tensorflow</code>是因为，执行后使用<code>conda list</code>查看其中的tensorflow版本确实是2.1.0，但是利用<code>print(tf.__version__)</code>打印出来的版本信息依然是1.4.1，而且很多新函数都无法使用。<br>最终执行以下命令即可：</p>
-<pre><code class="zsh">conda activate tensorflow #启用tensorflow虚拟环境，在其中管理tensorflow的卸载和安装
-pip uninstall tensorflow
-pip install tensorflow==2.1.0</code></pre>
-<h3 id="关于新版tensorflow特性的几点说明"><a href="#关于新版tensorflow特性的几点说明" class="headerlink" title="关于新版tensorflow特性的几点说明"></a>关于新版tensorflow特性的几点说明</h3><ul>
-<li>取消了v1版本中关于计算图的定义和执行的区分</li>
-<li>新版中的计算图采用动态计算图和autograph两种方式</li>
-<li>动态计算图，即Eager Execution，每定义一个算子，就会立即执行计算图。因此不需要像老版本一样，创建一个会话session，然后在会话中执行计算图，使得其使用更加贴近python原生语法</li>
-<li>动态计算图的缺点就是效率相较于静态计算图要低一些（老版使用的就是静态计算图）</li>
-<li>autograph使用@tf.function装饰器修饰函数，来将其转化为静态计算图，从而提升效率</li>
-</ul>
 
-            <hr>
-          </div>
-          <br>
-          <div>
-            <p>
-            
-            
-            </p>
-            
-              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
-            
+
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="d-none d-lg-block col-lg-2 toc-container">
-      
-  <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
-    <div id="tocbot"></div>
-  </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- custom -->
-
-
-<!-- Comments -->
-<div class="col-lg-7 mx-auto nopadding-md">
-  <div class="container comments mx-auto" id="comments">
-    
-      <br><br>
-      
-      
-  <div class="disqus" style="width:100%">
-    <div id="disqus_thread"></div>
-    <script>
-      var disqus_config = function () {
-        this.page.url = 'http://yoursite.com/2020/04/11/Tensorflow1.4.1升级到2.1.0/';
-        this.page.identifier = '/2020/04/11/Tensorflow1.4.1升级到2.1.0/';
-      };
-      var oldLoad = window.onload;
-      window.onload = function () {
-        var d = document, s = d.createElement('script');
-        s.type = 'text/javascript';
-        s.src = '//' + 'Victor' + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-      };
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" target="_blank" rel="nofollow noopener noopener">comments
-        powered by Disqus.</a></noscript>
-  </div>
-
-
-    
-  </div>
-</div>
-
     
   </main>
 
@@ -325,11 +235,6 @@ pip install tensorflow==2.1.0</code></pre>
 
 
 
-  
-    <script src="/lib/tocbot/tocbot.min.js" ></script>
-  
-  <script src="/js/post.js" ></script>
-
 
 
   <script src="/lib/smoothscroll/SmoothScroll.min.js" ></script>
@@ -370,7 +275,7 @@ pip install tensorflow==2.1.0</code></pre>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Tensorflow1.4.1升级到2.1.0&nbsp;",
+        "分类 - 机器学习&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
