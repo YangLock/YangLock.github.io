@@ -143,6 +143,44 @@
   <div class="row mx-auto index-card">
     
     
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/04/11/Tensorflow1.4.1%E5%8D%87%E7%BA%A7%E5%88%B02.1.0/">
+        <p class="h4 index-header">Tensorflow1.4.1升级到2.1.0</p>
+      </a>
+
+      <a href="/2020/04/11/Tensorflow1.4.1%E5%8D%87%E7%BA%A7%E5%88%B02.1.0/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">Tensorflow1.4.1升级到2.1.0
+Tensorflow 2.1.0优化了计算图，大大简化了使用流程，使得语法更贴近python的原生语法格式
+
+卸载原有的tensorflow1.4.1版本至于为何要卸载而不是直接执行sudo pip install --upgrada tensorflow是因为，执行后使用conda list查看其中的tensorflow版本确实是2.1.0，但是利用print(tf.__version__)打印出来的版本信息依然是1.4.1，而且很多新函数都无法使用。最终执行以下命令即可：
+conda activate tensorflow #启用tensorflow虚拟环境，在其中管理tensorflow的卸载和安装
+pip uninstall tensorflow
+pip install tensorflow==2.1.0
+关于新版tensorflow特性的几点说明
+取消了v1版本中关于计算图的定义和执行的区分
+新版中的计算图采用动态计算图和autograph两种方式
+动态计算图，即Eager Execution，每定义一个算子，就会立即执行计算图</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-04-11&nbsp;&nbsp;
+        
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
       <div class="col-12 col-md-4 m-auto">
         <a href="/2020/03/03/MacOS+Hexo+Github%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" target="_self">
           <img src="/img/Hexo.png" srcset="/img/loading.gif" alt="MacOS + Hexo + Github个人博客搭建" class="index-img img-fluid rounded index-thumbnails">

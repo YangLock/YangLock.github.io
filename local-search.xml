@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>Tensorflow1.4.1升级到2.1.0</title>
+    <link href="/2020/04/11/Tensorflow1.4.1%E5%8D%87%E7%BA%A7%E5%88%B02.1.0/"/>
+    <url>/2020/04/11/Tensorflow1.4.1%E5%8D%87%E7%BA%A7%E5%88%B02.1.0/</url>
+    
+    <content type="html"><![CDATA[<h2 id="Tensorflow1-4-1升级到2-1-0"><a href="#Tensorflow1-4-1升级到2-1-0" class="headerlink" title="Tensorflow1.4.1升级到2.1.0"></a>Tensorflow1.4.1升级到2.1.0</h2><blockquote><p>Tensorflow 2.1.0优化了计算图，大大简化了使用流程，使得语法更贴近python的原生语法格式</p></blockquote><h3 id="卸载原有的tensorflow1-4-1版本"><a href="#卸载原有的tensorflow1-4-1版本" class="headerlink" title="卸载原有的tensorflow1.4.1版本"></a>卸载原有的tensorflow1.4.1版本</h3><p>至于为何要卸载而不是直接执行<code>sudo pip install --upgrada tensorflow</code>是因为，执行后使用<code>conda list</code>查看其中的tensorflow版本确实是2.1.0，但是利用<code>print(tf.__version__)</code>打印出来的版本信息依然是1.4.1，而且很多新函数都无法使用。<br>最终执行以下命令即可：</p><pre><code class="zsh">conda activate tensorflow #启用tensorflow虚拟环境，在其中管理tensorflow的卸载和安装pip uninstall tensorflowpip install tensorflow==2.1.0</code></pre><h3 id="关于新版tensorflow特性的几点说明"><a href="#关于新版tensorflow特性的几点说明" class="headerlink" title="关于新版tensorflow特性的几点说明"></a>关于新版tensorflow特性的几点说明</h3><ul><li>取消了v1版本中关于计算图的定义和执行的区分</li><li>新版中的计算图采用动态计算图和autograph两种方式</li><li>动态计算图，即Eager Execution，每定义一个算子，就会立即执行计算图。因此不需要像老版本一样，创建一个会话session，然后在会话中执行计算图，使得其使用更加贴近python原生语法</li><li>动态计算图的缺点就是效率相较于静态计算图要低一些（老版使用的就是静态计算图）</li><li>autograph使用@tf.function装饰器修饰函数，来将其转化为静态计算图，从而提升效率</li></ul>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>MacOS + Hexo + Github个人博客搭建</title>
     <link href="/2020/03/03/MacOS+Hexo+Github%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
     <url>/2020/03/03/MacOS+Hexo+Github%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</url>
