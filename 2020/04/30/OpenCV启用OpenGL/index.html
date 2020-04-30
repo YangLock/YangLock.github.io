@@ -183,9 +183,9 @@
 <h3 id="利用CMake配置编译选项"><a href="#利用CMake配置编译选项" class="headerlink" title="利用CMake配置编译选项"></a>利用CMake配置编译选项</h3><ul>
 <li><p>首先在源码所在的同级目录下新创建一个<code>build</code>文件夹。</p>
 </li>
-<li><p>勾选上WITH_QT和WITH_OPENGL后点击configure。<br><img src="/Users/victor/Desktop/MyBlog/themes/fluid/source/img/Cmake1.png" srcset="/img/loading.gif" alt="Config Cmake"><br>点完之后会报出几个错误，显示关于Qt5的几个路径无法找到，查了半天终于找到以下解决方法。</p>
+<li><p>勾选上WITH_QT和WITH_OPENGL后点击configure。<br><img src="/img/Cmake1.png" srcset="/img/loading.gif" alt="Config Cmake"><br>点完之后会报出几个错误，显示关于Qt5的几个路径无法找到，查了半天终于找到以下解决方法。</p>
 </li>
-<li><p>找到<code>build</code>文件夹下的CMakeCache文件，打开文件并找到所有关于Qt5的代码，将其中的路径替换成如下图所示：<br><img src="/Users/victor/Desktop/MyBlog/themes/fluid/source/img/Cmake2.png" srcset="/img/loading.gif" alt="CMakeCache"></p>
+<li><p>找到<code>build</code>文件夹下的CMakeCache文件，打开文件并找到所有关于Qt5的代码，将其中的路径替换成如下图所示：<br><img src="/img/Cmake2.png" srcset="/img/loading.gif" alt="CMakeCache"></p>
 </li>
 <li><p>更改完后保存，重新configure，发现之前的错误都没有了，然后点击generate。</p>
 </li>
@@ -239,7 +239,7 @@ int main()
     return 0;
 }</code></pre>
 <p>如果能正确编译上述代码，就证明以正确开启openGL支持，并会看到以下结果：</p>
-<p><img src="/Users/victor/Desktop/MyBlog/themes/fluid/source/img/GLresult.png" srcset="/img/loading.gif" alt="result"></p>
+<p><img src="/img/GLresult.png" srcset="/img/loading.gif" alt="result"></p>
 
             <hr>
           </div>
