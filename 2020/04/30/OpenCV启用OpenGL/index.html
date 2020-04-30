@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/avatar.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>MacOS 配置支持OpenGL的OpenCV~Victor&#39;s Blog</title>
+
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Victor's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">标签</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" false
+         style="background: url('/img/banner.jpeg')no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期四, 四月 30日 2020, 11:44 晚上
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    926 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      3 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h2 id="启用OpenCV中的OpenGL支持"><a href="#启用OpenCV中的OpenGL支持" class="headerlink" title="启用OpenCV中的OpenGL支持"></a>启用OpenCV中的OpenGL支持</h2><blockquote>
+<p>最近计算机视觉的作业要弄AR，因此一些3D图形的渲染与绘制就要用到OpenGL。但是Homebrew安装的OepnCV默认是不开启WITH_OPENGL选项的，因此就需要下载源码然后手动安装。</p>
+</blockquote>
+<h3 id="下载源码"><a href="#下载源码" class="headerlink" title="下载源码"></a>下载源码</h3><blockquote>
+<p>这里就听老师的，下载的是OpenCV2.4.13.6版本。</p>
+</blockquote>
+<p>不知为何官网Releases下的源码下载总是下到一半就中断，因此就在官方的Github仓库里下载压缩包。<a href="https://github.com/opencv/opencv/releases?after=3.4.1-cvsdk" target="_blank" rel="noopener">下载链接</a></p>
+<p>下载好源码后将其解压放置在电脑的个人目录下，准备开始CMake。</p>
+<h3 id="下载QT"><a href="#下载QT" class="headerlink" title="下载QT"></a>下载QT</h3><p>MacOS上启用OpenGL支持最坑的一点就是，必须联合QT一起编译才能正确启用OpenGL。因此必须预先下载并安装好QT。可以使用Homebrew安装，不过我是通过官网下载的Qt5。<br><strong><em>P.S. 在网上看了好多博客，然后老师给的代码里的README也说必须要下载Qt4才行。但是我之前已经装好Qt5了，实在不想删掉再弄个Qt4。因此就头铁继续干了。</em></strong></p>
+<h3 id="利用CMake配置编译选项"><a href="#利用CMake配置编译选项" class="headerlink" title="利用CMake配置编译选项"></a>利用CMake配置编译选项</h3><ul>
+<li><p>首先在源码所在的同级目录下新创建一个<code>build</code>文件夹。</p>
+</li>
+<li><p>勾选上WITH_QT和WITH_OPENGL后点击configure。<br><img src="/Users/victor/Desktop/MyBlog/themes/fluid/source/img/Cmake1.png" srcset="/img/loading.gif" alt="Config Cmake"><br>点完之后会报出几个错误，显示关于Qt5的几个路径无法找到，查了半天终于找到以下解决方法。</p>
+</li>
+<li><p>找到<code>build</code>文件夹下的CMakeCache文件，打开文件并找到所有关于Qt5的代码，将其中的路径替换成如下图所示：<br><img src="/Users/victor/Desktop/MyBlog/themes/fluid/source/img/Cmake2.png" srcset="/img/loading.gif" alt="CMakeCache"></p>
+</li>
+<li><p>更改完后保存，重新configure，发现之前的错误都没有了，然后点击generate。</p>
+</li>
+</ul>
+<h3 id="在命令行中编译"><a href="#在命令行中编译" class="headerlink" title="在命令行中编译"></a>在命令行中编译</h3><ul>
+<li>跳转到<code>build</code>文件夹所在路径，然后执行<code>sudo make</code>指令。<br>编译的过程中，在编译到highgui模块时，会报错并终止编译。错误信息大致就像以下这样<pre><code class="bash">error: ‘CODEC_FLAG_GLOBAL_HEADER’ was not declared in this scope
+</code></pre>
+</li>
+</ul>
+<p>error: ‘AVFMT_RAWPICTURE’ was not declared in this scope</p>
+<p>error: ‘CODEC_FLAG_GLOBAL_HEADER’ was not declared in this scope</p>
+<p>for target ‘modules/highgui/CMakeFiles/opencv_highgui.dir/src/cap_ffmpeg.cpp.o’ failed<br>make[2]: *** [modules/highgui/CMakeFiles/opencv_highgui.dir/src/cap_ffmpeg.cpp.o] Error 1</p>
+<pre><code>
+这是因为FFMPEG与OpenCV的版本产生了冲突，两者是分别开发的，因此在编译本版本的OpenCV时使用的FFMPEG并不是此时使用的这个库。所以想要尝试下载不同版本的FFMPEG来匹配，直到在[stackoverflow](https://stackoverflow.com/questions/46884682/error-in-building-opencv-with-ffmpeg)上看到了一位大佬的解决方法。总结来讲就是将以下这三个宏定义复制到`cap_ffmpeg_impl.hpp`这个头文件的开头即可。
+
+```C++
+#define AV_CODEC_FLAG_GLOBAL_HEADER (1 &lt;&lt; 22)
+#define CODEC_FLAG_GLOBAL_HEADER AV_CODEC_FLAG_GLOBAL_HEADER
+#define AVFMT_RAWPICTURE 0x0020</code></pre><ul>
+<li>重新执行<code>sudo make</code>指令，之后的编译就都正常进行了</li>
+<li>最后zhi xing<code>sudo make install</code>，所有的头文件和库文件就都安装在<code>/usr/local/include</code>和<code>/usr/local/lib</code>路径下了。编译工作大功告成</li>
+</ul>
+<h3 id="配置Xcode"><a href="#配置Xcode" class="headerlink" title="配置Xcode"></a>配置Xcode</h3><p>与之前配置OpenCV项目一样，唯一需要注意的一点就是在链接库文件进项目里时，不要将<code>cv2.so</code>这个文件链接进去。之前无脑全选链接进去的时候，总是会在编译时报错，后来发现是这个鬼。</p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><pre><code class="C++">#include &lt;opencv2/opencv.hpp&gt;
+#include &lt;opencv2/highgui.hpp&gt;
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;OpenGL/gl.h&gt;
+
+using namespace cv;
+using namespace std;
+
+void onDraw(void* param)
+{
+    glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
+    glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+
+    glColor3f(1.0f, 0.0f, 0.0f);
+    glRectf(-0.5f, -0.5f, 0.5f, 0.5f);
+    glFlush();
+}
+
+int main()
+{
+    string openGLWindowName = &quot;OpenGLDemo&quot;;
+    namedWindow(openGLWindowName, WINDOW_OPENGL);
+    resizeWindow(openGLWindowName, 640, 480);
+    setOpenGlContext(openGLWindowName);
+    setOpenGlDrawCallback(openGLWindowName, onDraw, NULL);
+
+    waitKey(0);
+    updateWindow(openGLWindowName);
+    waitKey(0);
+    return 0;
+}</code></pre>
+<p>如果能正确编译上述代码，就证明以正确开启openGL支持，并会看到以下结果：</p>
+<p><img src="/Users/victor/Desktop/MyBlog/themes/fluid/source/img/GLresult.png" srcset="/img/loading.gif" alt="result"></p>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+              <span>
+                <i class="iconfont icon-inbox"></i>
+                
+                  <a class="hover-with-bg" href="/categories/OpenCV">OpenCV</a>
+                  &nbsp;
+                
+              </span>&nbsp;&nbsp;
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/OpenCV%E9%A1%B9%E7%9B%AE%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE">OpenCV项目相关配置</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2020/04/30/OpenCV启用OpenGL/';
+        this.page.identifier = '/2020/04/30/OpenCV启用OpenGL/';
+      };
+      var oldLoad = window.onload;
+      window.onload = function () {
+        var d = document, s = d.createElement('script');
+        s.type = 'text/javascript';
+        s.src = '//' + 'Victor' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      };
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" target="_blank" rel="nofollow noopener noopener">comments
+        powered by Disqus.</a></noscript>
+  </div>
+
+
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv"></span>总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv"></span>总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人&nbsp;
+  
+  <br>
+
+
+
+    
+
+
+    <!-- cnzz Analytics icon -->
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="/lib/smoothscroll/SmoothScroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  <!-- cnzz Analytics -->
+  
+
+
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "MacOS 配置支持OpenGL的OpenCV&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
