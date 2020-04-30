@@ -130,7 +130,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    926 字
+                    914 字
                   </span>&nbsp;
                 
 
@@ -191,20 +191,17 @@
 </li>
 </ul>
 <h3 id="在命令行中编译"><a href="#在命令行中编译" class="headerlink" title="在命令行中编译"></a>在命令行中编译</h3><ul>
-<li>跳转到<code>build</code>文件夹所在路径，然后执行<code>sudo make</code>指令。<br>编译的过程中，在编译到highgui模块时，会报错并终止编译。错误信息大致就像以下这样<pre><code class="bash">error: ‘CODEC_FLAG_GLOBAL_HEADER’ was not declared in this scope
-</code></pre>
-</li>
+<li>跳转到<code>build</code>文件夹所在路径，然后执行<code>sudo make</code>指令。<br>编译的过程中，在编译到highgui模块时，会报错并终止编译。错误信息大致就像以下这样</li>
 </ul>
+<p>error: ‘CODEC_FLAG_GLOBAL_HEADER’ was not declared in this scope</p>
 <p>error: ‘AVFMT_RAWPICTURE’ was not declared in this scope</p>
 <p>error: ‘CODEC_FLAG_GLOBAL_HEADER’ was not declared in this scope</p>
-<p>for target ‘modules/highgui/CMakeFiles/opencv_highgui.dir/src/cap_ffmpeg.cpp.o’ failed<br>make[2]: *** [modules/highgui/CMakeFiles/opencv_highgui.dir/src/cap_ffmpeg.cpp.o] Error 1</p>
-<pre><code>
-这是因为FFMPEG与OpenCV的版本产生了冲突，两者是分别开发的，因此在编译本版本的OpenCV时使用的FFMPEG并不是此时使用的这个库。所以想要尝试下载不同版本的FFMPEG来匹配，直到在[stackoverflow](https://stackoverflow.com/questions/46884682/error-in-building-opencv-with-ffmpeg)上看到了一位大佬的解决方法。总结来讲就是将以下这三个宏定义复制到`cap_ffmpeg_impl.hpp`这个头文件的开头即可。
-
-```C++
-#define AV_CODEC_FLAG_GLOBAL_HEADER (1 &lt;&lt; 22)
+<p>for target ‘modules/highgui/CMakeFiles/opencv_highgui.dir/src/cap_ffmpeg.cpp.o’ failed<br>make[2]: [modules/highgui/CMakeFiles/opencv_highgui.dir/src/cap_ffmpeg.cpp.o] Error 1</p>
+<p>这是因为FFMPEG与OpenCV的版本产生了冲突，两者是分别开发的，因此在编译本版本的OpenCV时使用的FFMPEG并不是此时使用的这个库。所以想要尝试下载不同版本的FFMPEG来匹配，直到在<a href="https://stackoverflow.com/questions/46884682/error-in-building-opencv-with-ffmpeg" target="_blank" rel="noopener">stackoverflow</a>上看到了一位大佬的解决方法。总结来讲就是将以下这三个宏定义复制到<code>cap_ffmpeg_impl.hpp</code>这个头文件的开头即可。</p>
+<pre><code class="C++">#define AV_CODEC_FLAG_GLOBAL_HEADER (1 &lt;&lt; 22)
 #define CODEC_FLAG_GLOBAL_HEADER AV_CODEC_FLAG_GLOBAL_HEADER
-#define AVFMT_RAWPICTURE 0x0020</code></pre><ul>
+#define AVFMT_RAWPICTURE 0x0020</code></pre>
+<ul>
 <li>重新执行<code>sudo make</code>指令，之后的编译就都正常进行了</li>
 <li>最后zhi xing<code>sudo make install</code>，所有的头文件和库文件就都安装在<code>/usr/local/include</code>和<code>/usr/local/lib</code>路径下了。编译工作大功告成</li>
 </ul>
