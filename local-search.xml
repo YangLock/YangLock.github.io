@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Google Colab上部分操作的记录</title>
+    <link href="/2020/05/17/Colab%E6%93%8D%E4%BD%9C%E8%AF%B4%E6%98%8E/"/>
+    <url>/2020/05/17/Colab%E6%93%8D%E4%BD%9C%E8%AF%B4%E6%98%8E/</url>
+    
+    <content type="html"><![CDATA[<h2 id="将谷歌云盘内容拷贝到colab中"><a href="#将谷歌云盘内容拷贝到colab中" class="headerlink" title="将谷歌云盘内容拷贝到colab中"></a>将谷歌云盘内容拷贝到colab中</h2><pre><code class="python">from google.colab import drivedrive.mount(&#39;/content/drive&#39;)</code></pre><p>执行完之后，点击出现的链接，然后将验证码填入到输入框中即可。</p><h2 id="创建文件链接"><a href="#创建文件链接" class="headerlink" title="创建文件链接"></a>创建文件链接</h2><p>默认云盘内容都是存在<code>My Drive</code>文件夹下，因此要执行代码时，就要利用<code>cd</code>命令跳转目录。但是<code>cd /content/drive/My\ Drive</code>无论如何都找不到<code>My Drive</code>文件夹，即使加了转译符也不行。所以，将整个文件夹下的内容链接到另一个叫<code>mydrive</code>的文件夹下。</p><pre><code class="python">from google.colab import drivedrive.mount(&#39;/content/drive&#39;)!ln -s &quot;/content/drive/My Drive&quot; &quot;/content/mydrive&quot;</code></pre><p>之后就可以正常跳转目录了。</p><p>其他更多的操作可以参考这篇博客<a href="https://medium.com/deep-learning-turkey/google-colab-free-gpu-tutorial-e113627b9f5d" target="_blank" rel="noopener">Google Colab Free GPU Tutorial</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Google Colab</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Colab训练模型</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>MacOS 配置支持OpenGL的OpenCV</title>
     <link href="/2020/04/30/OpenCV%E5%90%AF%E7%94%A8OpenGL/"/>
     <url>/2020/04/30/OpenCV%E5%90%AF%E7%94%A8OpenGL/</url>

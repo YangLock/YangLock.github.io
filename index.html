@@ -144,6 +144,59 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2020/05/17/Colab%E6%93%8D%E4%BD%9C%E8%AF%B4%E6%98%8E/" target="_self">
+          <img src="/img/colab.jpg" srcset="/img/loading.gif" alt="Google Colab上部分操作的记录" class="index-img img-fluid rounded index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/05/17/Colab%E6%93%8D%E4%BD%9C%E8%AF%B4%E6%98%8E/">
+        <p class="h4 index-header">Google Colab上部分操作的记录</p>
+      </a>
+
+      <a href="/2020/05/17/Colab%E6%93%8D%E4%BD%9C%E8%AF%B4%E6%98%8E/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">将谷歌云盘内容拷贝到colab中from google.colab import drive
+drive.mount(&#39;/content/drive&#39;)
+执行完之后，点击出现的链接，然后将验证码填入到输入框中即可。
+创建文件链接默认云盘内容都是存在My Drive文件夹下，因此要执行代码时，就要利用cd命令跳转目录。但是cd /content/drive/My\ Drive无论如何都找不到My Drive文件夹，即使加了转译符也不行。所以，将整个文件夹下的内容链接到另一个叫mydrive的文件夹下。
+from google.colab import drive
+drive.mount(&#39;/content/drive&#39;)
+!ln -s &quot;/content/drive/My Drive&quot; &quot;/content/mydrive&quot;
+之后就可以正常跳转目录了。
+其他更多的操作可以参考这篇博客Google Colab Free GPU Tutorial
+</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-05-17&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/Google%20Colab">Google Colab</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/Colab%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B">Colab训练模型</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2020/04/30/OpenCV%E5%90%AF%E7%94%A8OpenGL/" target="_self">
           <img src="/img/opencv.png" srcset="/img/loading.gif" alt="MacOS 配置支持OpenGL的OpenCV" class="index-img img-fluid rounded index-thumbnails">
         </a>
