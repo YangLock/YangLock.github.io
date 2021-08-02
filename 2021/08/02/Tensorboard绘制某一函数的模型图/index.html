@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>使用Tensorboard可视化函数计算过程 - Victor&#39;s Blog</title>
+  <title>使用TensorBoard可视化函数计算过程 - Victor&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -174,7 +174,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="使用Tensorboard可视化函数计算过程">
+            <span class="h2" id="subtitle" title="使用TensorBoard可视化函数计算过程">
               
             </span>
 
@@ -196,7 +196,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      0 字
+      387 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      4
        分钟
     </span>
   
@@ -236,10 +236,27 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">使用Tensorboard可视化函数计算过程</h1>
+            <h1 style="display: none">使用TensorBoard可视化函数计算过程</h1>
             
             <div class="markdown-body">
-              
+              <blockquote>
+<p>TensorBoard是检查TensorFlow模型的强大工具，开发者可以通过查看模型结构的预览图确保模型的构建符合其预期。TensorFlow2.0之后将Keras也整合到了框架中，开发者可以在利用Keras搭建模型后利用回调函数来记录模型结构。但是本文将重点介绍如何可视化一个函数的计算过程。</p>
+</blockquote>
+<p>TensorFlow<a href="https://tensorflow.google.cn/tensorboard/graphs?hl=zh_cn" target="_blank" rel="noopener">官方文档</a>中指出，可以使用TensorBoard中的<strong>TensorFlow Summary Trace API</strong>记录签名函数从而进行可视化。<br>下面是使用Summary Trace API的步骤：</p>
+<ul>
+<li>使用<code>tf.function</code>定义和注释要进行可视化的函数（tf.function注释后可以将Python计算函数转换为高性能的TensorFlow静态图）</li>
+<li>在函数调用站点之前立即使用<code>tf.summary.trace_on()</code></li>
+<li>通过传递<code>profiler=True</code>将配置文件信息（内存、CPU时间）添加到图中</li>
+<li>使用摘要文件编写器，调用<code>tf.summary.trace_export()</code>保存日志数据</li>
+</ul>
+<p>示例如下所示：</p>
+<figure class="highlight Python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-comment"># 定义和注释要进行可视化的函数</span><br><span class="hljs-meta">@tf.function</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">my_func1</span><span class="hljs-params">(x, y)</span>:</span><br>    <span class="hljs-keyword">return</span> tf.add(x, y)<br><br><span class="hljs-comment"># 设置时间和日志文件存放路径</span><br>time_stamp = datetime.now().strftime(<span class="hljs-string">"%Y%m%d-%H%M%S"</span>)<br>logdir = <span class="hljs-string">'./desktop/logs/%s'</span> %time_stamp<br>graph_writer = tf.summary.create_file_writer(logdir)<br><br><span class="hljs-comment"># 定义数据</span><br>num1 = tf.constant(<span class="hljs-number">1</span>)<br>num2 = tf.constant(<span class="hljs-number">2</span>)<br><br><span class="hljs-comment"># 在调用函数前先执行tf.summary.trace_on()函数</span><br>tf.summary.trace_on(graph=<span class="hljs-literal">True</span>, profiler=<span class="hljs-literal">True</span>)<br><br><span class="hljs-comment"># 调用函数</span><br>result1 = my_func1(num1, num2)<br><br><span class="hljs-comment"># 保存日志数据</span><br><span class="hljs-keyword">with</span> graph_writer.as_default():<br>    tf.summary.trace_export(name=<span class="hljs-string">"my_func_trace"</span>, step=<span class="hljs-number">0</span>, profiler_outdir=logdir)<br></code></pre></td></tr></table></figure>
+
+<p>最后通过执行如下命令查看可视化结果：</p>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs zsh">tensorboard --logdir ./desktop/logs<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/visionfunc.png" srcset="/img/loading.gif" alt="result"></p>
+
             </div>
             <hr>
             <div>
@@ -256,7 +273,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Tensorboard/">Tensorboard</a>
+                      <a class="hover-with-bg" href="/tags/TensorBoard/">TensorBoard</a>
                     
                   </div>
                 
