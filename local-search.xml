@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>使用Tensorboard可视化函数计算过程</title>
+    <link href="/2021/08/02/Tensorboard%E7%BB%98%E5%88%B6%E6%9F%90%E4%B8%80%E5%87%BD%E6%95%B0%E7%9A%84%E6%A8%A1%E5%9E%8B%E5%9B%BE/"/>
+    <url>/2021/08/02/Tensorboard%E7%BB%98%E5%88%B6%E6%9F%90%E4%B8%80%E5%87%BD%E6%95%B0%E7%9A%84%E6%A8%A1%E5%9E%8B%E5%9B%BE/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>深度学习框架学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Tensorboard</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Google Colab上部分操作的记录</title>
     <link href="/2020/05/17/Colab%E6%93%8D%E4%BD%9C%E8%AF%B4%E6%98%8E/"/>
     <url>/2020/05/17/Colab%E6%93%8D%E4%BD%9C%E8%AF%B4%E6%98%8E/</url>
