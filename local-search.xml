@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Xcode项目中配置OpenMP</title>
+    <link href="/2022/01/16/OpenMP%E9%85%8D%E7%BD%AE/"/>
+    <url>/2022/01/16/OpenMP%E9%85%8D%E7%BD%AE/</url>
+    
+    <content type="html"><![CDATA[<h2 id="配置步骤"><a href="#配置步骤" class="headerlink" title="配置步骤"></a>配置步骤</h2><h3 id="利用Homebrew安装llvm"><a href="#利用Homebrew安装llvm" class="headerlink" title="利用Homebrew安装llvm"></a>利用Homebrew安装llvm</h3><p>OpenMP的使用需要依赖于llvm编译框架，所以需要下载并安装llvm。执行命令<code>brew install llvm</code>即可。</p><h3 id="在Xcode中配置OpenMP"><a href="#在Xcode中配置OpenMP" class="headerlink" title="在Xcode中配置OpenMP"></a>在Xcode中配置OpenMP</h3><ol><li>在<strong>User-Defined setting</strong>中新添加一个变量名为<strong>CC</strong>，并将其值设置为<code>/usr/local/opt/llvm/clang</code><br><img src="/img/ompcfg1.png" srcset="/img/loading.gif" alt="User-Defined setting"></li><li>在<strong>Enable Modules</strong>中将其值更改为<strong>No</strong>。<br><img src="/img/ompcfg2.png" srcset="/img/loading.gif" alt="Enable Modules"></li><li>填充<strong>Library Search Paths</strong>选项，填充值为<code>/usr/local/opt/llvm/lib</code>。<br><img src="/img/ompcfg3.png" srcset="/img/loading.gif" alt="Library Search Paths"></li><li>接下来填充<strong>Header Search paths</strong>选项，填充值为<code>/usr/local/opt/llvm/lib/clang/13.0.0/include</code>。<br><img src="/img/ompcfg4.png" srcset="/img/loading.gif" alt="Header Search Paths"></li><li>填充<strong>Other C Flags</strong>选项，填充值为<code>-fopenmp</code>。<br><img src="/img/ompcfg5.png" srcset="/img/loading.gif" alt="Other C Flags"></li><li>在<strong>Build Phases</strong>中将动态库链接进去，在<code>/usr/local/lib</code>中找到<code>libomp.dylib</code>库文件，然后直接拖拽进去即可。<br><img src="/img/ompcfg6.png" srcset="/img/loading.gif" alt="Link Library"></li><li>最后，将<strong>Enable Index-While-Building Functionality</strong>选项勾选为<strong>No</strong>。<br><img src="/img/ompcfg7.png" srcset="/img/loading.gif" alt="Enable Index-While-Building Functionality"></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>OpenMP</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>OpenMP配置</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>TensorFlow中的多维tensor运算（tf.tensordot）</title>
     <link href="/2021/08/16/TensorFlow%E4%B8%AD%E7%9A%84%E5%A4%9A%E7%BB%B4tensor%E8%BF%90%E7%AE%97/"/>
     <url>/2021/08/16/TensorFlow%E4%B8%AD%E7%9A%84%E5%A4%9A%E7%BB%B4tensor%E8%BF%90%E7%AE%97/</url>
